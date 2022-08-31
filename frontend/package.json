@@ -6,8 +6,6 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "express": "^4.18.1",
-    "mongoose": "^6.5.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.1.1",
@@ -37,18 +35,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "Данный проект разработан мной в рамках обучения, согласно техническому заданию Яндекс практикума. ## Цели данной работы:  * Знакомство с javaScript-библиотекой React;",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Mihail958/react-mesto-auth.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Mihail958/react-mesto-auth/issues"
-  },
-  "homepage": "https://github.com/Mihail958/react-mesto-auth#readme"
+  }
 }
