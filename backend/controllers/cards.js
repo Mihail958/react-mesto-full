@@ -16,10 +16,11 @@ module.exports.createCard = (req, res, next) => {
     .then((card) => {
       if (!card) {
         next(new BadRequest('Переданы некорректные данные'));
-      } else { res.status(200).send({ data: card }); }
+      }
+      res.status(200).send(card);
     })
     .catch((err) => {
-      if (err.name === 'BadRequest') {
+      if (err.name === 'ValidationError') {
         next(new BadRequest({ message: err.errorMessage }));
       } else { next(err); }
     });
@@ -51,10 +52,10 @@ module.exports.likeCard = (req, res, next) => {
     { new: true },
   )
     .orFail(() => {
-      throw new NotFound('Карточка по указанному id не найдена');
+      throw new NotFound('Карточка не найдена');
     })
     .then((card) => {
-      res.status(200).send({ data: card });
+      res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -69,7 +70,7 @@ module.exports.dislikeCard = (req, res, next) => {
       throw new NotFound('Карточка не найдена');
     })
     .then((card) => {
-      res.status(200).send({ data: card });
+      res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {

@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3002";
+export const URL = "http://localhost:3001";
 
 function checkResponse(res) {
     if (res.ok) {
@@ -9,9 +9,8 @@ function checkResponse(res) {
   
   
   export function registerUser(email, password) {
-    return fetch(`${BASE_URL}/signup`, {
+    return fetch(`${URL}/signup`, {
       credentials: 'include',
-      mode: 'no-cors',
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,9 +20,8 @@ function checkResponse(res) {
   }
   
   export function loginUser(email, password) {
-    return fetch(`${BASE_URL}/signin`, {
+    return fetch(`${URL}/signin`, {
       credentials: 'include',
-      mode: 'no-cors',
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,13 +31,12 @@ function checkResponse(res) {
   }
   
   export function getToken(jwt) {
-    return fetch(`${BASE_URL}/users/me`, {
+    return fetch(`${URL}/users/me`, {
       credentials: 'include',
-      mode: 'no-cors',
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${jwt}`,
+        Authorization: `Bearer ${jwt}`
       },
     }).then(checkResponse);
   }

@@ -28,6 +28,7 @@ function Main({
               onClick={onEditAvatar}
               className="profile__avatar-change"
               src={changeAvatar}
+              alt="Изменить аватар"
             />
           </div>
           <div className="profile__intro">

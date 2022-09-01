@@ -135,6 +135,9 @@ module.exports.updateAvatar = (req, res, next) => {
 module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
+      if (!user._id) {
+        next(new NotFound('Пользователь не найден'));
+      }
       res.status(200).send(user);
     })
     .catch((err) => {

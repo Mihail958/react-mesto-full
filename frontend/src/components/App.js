@@ -128,11 +128,12 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
+    const isLiked = card.likes.some(i => i === currentUser._id);
+    
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      // console.log("newCard",newCard)
     });
   }
 
@@ -147,7 +148,7 @@ function App() {
 
   function handleUpdateUser(user) {
     api
-      .editProfile(user.name, user.about)
+      .editProfile(user)
       .then((editUserInfo) => {
         setCurrentUser({
           ...currentUser,
@@ -174,7 +175,7 @@ function App() {
 
   function handleAddNewCard(card) {
     api
-      .addNewCard(card.name, card.link)
+      .addNewCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();

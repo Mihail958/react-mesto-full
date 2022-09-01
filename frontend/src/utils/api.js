@@ -1,7 +1,7 @@
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ Url, headers }) {
     this._headers = headers;
-    this._baseUrl = baseUrl;
+    this._Url = Url;
   }
 
   //проверка ответа от сервера
@@ -14,55 +14,45 @@ class Api {
 
   //получение данных профиля
   getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      credentials: 'include',
-      mode: 'no-cors',
+    return fetch(`${this._Url}/users/me`, {
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
   //получение карточек
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      credentials: 'include',
-      mode: 'no-cors',
+    return fetch(`${this._Url}/cards`, {
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
   //редактирование профиля
-  editProfile(name, about) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      credentials: 'include',
-      mode: 'no-cors',
+  editProfile(data) {
+    return fetch(`${this._Url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name,
-        about,
+        name: data.name,
+        about: data.about
       }),
     }).then(this._checkResponse);
   }
 
   //добавление новых карточек
-  addNewCard(name, link) {
-    return fetch(`${this._baseUrl}/cards`, {
-      credentials: 'include',
-      mode: 'no-cors',
+  addNewCard(data) {
+    return fetch(`${this._Url}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name,
-        link,
+        name: data.name,
+        link: data.link
       }),
     }).then(this._checkResponse);
   }
 
   //удаление карточек
   deleteCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id}`, {
-      credentials: 'include',
-      mode: 'no-cors',
+    return fetch(`${this._Url}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -70,9 +60,7 @@ class Api {
 
   //удаление и постановка лайков
   changeLikeCardStatus(id, likeStatus) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      credentials: 'include',
-      mode: 'no-cors',
+    return fetch(`${this._Url}/cards/${id}/likes`, {
       method: likeStatus ? "PUT" : "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -80,23 +68,20 @@ class Api {
 
   //редактирование аватара
   changeAvatar(link) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      credentials: 'include',
-      mode: 'no-cors',
+    return fetch(`${this._Url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ avatar: link }),
     }).then(this._checkResponse);
   }
+
 }
 
-
-
 export  const api = new Api({
-  baseUrl: "http://localhost:3002",
-  credentials: 'include',
-  mode: 'no-cors',
+  Url: "http://localhost:3001",
   headers: {
+    Accept: 'application/json',
     "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`
   },
 });
