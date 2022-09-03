@@ -1,6 +1,8 @@
 const allowedCors = [
   'localhost:3000',
   'http://localhost:3000',
+  'domainname.mikhail.nomoredomains.sbs',
+  'http://domainname.mikhail.nomoredomains.sbs',
 ];
 // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';

@@ -1,4 +1,4 @@
-export const URL = "http://localhost:3001";
+export const URL = "https://domainname.mikhail.bac.nomoredomains.sbs";
 
 function checkResponse(res) {
     if (res.ok) {
