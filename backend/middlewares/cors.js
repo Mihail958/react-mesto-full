@@ -4,12 +4,12 @@ const allowedCors = [
   'domainname.mikhail.nomoredomains.sbs',
   'http://domainname.mikhail.nomoredomains.sbs',
 ];
-// Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
-const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 const cors = (req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
+  // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   const requestHeaders = req.headers['access-control-request-headers'];
   console.log(req);
 
