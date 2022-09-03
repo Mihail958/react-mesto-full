@@ -3,7 +3,6 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const helmet = require('helmet');
 const { errors } = require('celebrate');
 const routesUsers = require('./routes/users');
 const routesCards = require('./routes/cards');
@@ -21,8 +20,6 @@ const app = express();
 app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(helmet());
 
 app.use(requestLogger); // подключаем логгер запросов
 
