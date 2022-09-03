@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const { errors } = require('celebrate');
 const routesUsers = require('./routes/users');
 const routesCards = require('./routes/cards');
@@ -20,7 +22,23 @@ app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(helmet());
+
 app.use(requestLogger); // подключаем логгер запросов
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // за 15 минут
+  max: 100, // можно совершить максимум 100 запросов с одного IP
+});
+
+// подключаем rate-limiter
+app.use(limiter);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 // логин
 app.post('/signin', loginValid, login);
