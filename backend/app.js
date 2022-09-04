@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
@@ -8,6 +7,7 @@ const routesUsers = require('./routes/users');
 const routesCards = require('./routes/cards');
 const NotFound = require('./errors/NotFound');
 const { createUser, login } = require('./controllers/users');
+const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const { registerValid, loginValid } = require('./middlewares/joi');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -17,7 +17,7 @@ const { PORT = 3001 } = process.env;
 
 const app = express();
 
-app.use(cors());
+app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
