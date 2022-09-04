@@ -16,7 +16,11 @@ class Api {
   getProfile() {
     return fetch(`${this._Url}/users/me`, {
       credentials: 'include',
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  },
     }).then(this._checkResponse);
   }
 
@@ -24,7 +28,11 @@ class Api {
   getInitialCards() {
     return fetch(`${this._Url}/cards`, {
       credentials: 'include',
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  },
     }).then(this._checkResponse);
   }
 
@@ -33,7 +41,11 @@ class Api {
     return fetch(`${this._Url}/users/me`, {
       credentials: 'include',
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  },
       body: JSON.stringify({
         name: data.name,
         about: data.about
@@ -46,7 +58,11 @@ class Api {
     return fetch(`${this._Url}/cards`, {
       credentials: 'include',
       method: "POST",
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  },
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -59,7 +75,11 @@ class Api {
     return fetch(`${this._Url}/cards/${id}`, {
       credentials: 'include',
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  },
     }).then(this._checkResponse);
   }
 
@@ -68,7 +88,11 @@ class Api {
     return fetch(`${this._Url}/cards/${id}/likes`, {
       credentials: 'include',
       method: likeStatus ? "PUT" : "DELETE",
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  },
     }).then(this._checkResponse);
   }
 
@@ -77,7 +101,11 @@ class Api {
     return fetch(`${this._Url}/users/me/avatar`, {
       credentials: 'include',
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+  },
       body: JSON.stringify({ avatar: link }),
     }).then(this._checkResponse);
   }
@@ -86,10 +114,4 @@ class Api {
 
 export  const api = new Api({
   Url: "https://domainname.mikhail.bac.nomoredomains.sbs",
-  credentials: 'include',
-  headers: {
-    Accept: 'application/json',
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem('jwt')}`
-  },
 });
