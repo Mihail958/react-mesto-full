@@ -1,6 +1,5 @@
 # react-mesto-api-full
 Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
   
-Проект размещен по адресу: https://domainname.mikhail.nomoredomains.sbs/
-Адрес сервера : https://domainname.mikhail.bac.nomoredomains.sbs/
+Проект размещен по адресу: http://domainname.mikhail.nomoredomains.sbs/
 IP адрес сервера 51.250.1.49
