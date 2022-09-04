@@ -15,6 +15,7 @@ class Api {
   //получение данных профиля
   getProfile() {
     return fetch(`${this._Url}/users/me`, {
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -22,6 +23,7 @@ class Api {
   //получение карточек
   getInitialCards() {
     return fetch(`${this._Url}/cards`, {
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -29,6 +31,7 @@ class Api {
   //редактирование профиля
   editProfile(data) {
     return fetch(`${this._Url}/users/me`, {
+      credentials: 'include',
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -41,6 +44,7 @@ class Api {
   //добавление новых карточек
   addNewCard(data) {
     return fetch(`${this._Url}/cards`, {
+      credentials: 'include',
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -53,6 +57,7 @@ class Api {
   //удаление карточек
   deleteCard(id) {
     return fetch(`${this._Url}/cards/${id}`, {
+      credentials: 'include',
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -61,6 +66,7 @@ class Api {
   //удаление и постановка лайков
   changeLikeCardStatus(id, likeStatus) {
     return fetch(`${this._Url}/cards/${id}/likes`, {
+      credentials: 'include',
       method: likeStatus ? "PUT" : "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
@@ -69,6 +75,7 @@ class Api {
   //редактирование аватара
   changeAvatar(link) {
     return fetch(`${this._Url}/users/me/avatar`, {
+      credentials: 'include',
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ avatar: link }),
@@ -79,6 +86,7 @@ class Api {
 
 export  const api = new Api({
   Url: "https://domainname.mikhail.bac.nomoredomains.sbs",
+  credentials: 'include',
   headers: {
     Accept: 'application/json',
     "Content-Type": "application/json",
