@@ -11,13 +11,13 @@ const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const { registerValid, loginValid } = require('./middlewares/joi');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { errorHandler } = require('./middlewares/errorHandler');
+const errorHandler = require('./middlewares/errorHandler');
 
 const { PORT = 3001 } = process.env;
 
 const app = express();
 
-app.use(cors());
+app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
