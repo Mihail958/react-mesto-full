@@ -11,6 +11,7 @@ const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const { registerValid, loginValid } = require('./middlewares/joi');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { errorHandler } = require('./middlewares/errorHandler');
 
 const { PORT = 3001 } = process.env;
 
@@ -37,8 +38,6 @@ app.post('/signup', registerValid, createUser);
 app.use(auth);
 
 // роуты защищенные авторизацией
-app.use('/cards', require('./routes/cards'));
-
 app.use(routesUsers);
 app.use(routesCards);
 
@@ -51,11 +50,7 @@ app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors());
 
 // централизованный обработчик ошибок
-app.use((err, req, res, next) => {
-  const status = err.statusCode || 500;
-  res.status(status).send({ err });
-  next();
-});
+app.use(errorHandler);
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
