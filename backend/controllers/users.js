@@ -122,9 +122,10 @@ module.exports.updateAvatar = (req, res, next) => {
 
 module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
+    // eslint-disable-next-line consistent-return
     .then((user) => {
       if (!user._id) {
-        next(new NotFound('Пользователь не найден'));
+        return next(new NotFound('Пользователь не найден'));
       }
       res.status(200).send(user);
     })
