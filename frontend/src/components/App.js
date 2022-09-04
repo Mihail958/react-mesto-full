@@ -82,13 +82,15 @@ function App() {
 
 
   React.useEffect(() => {
+    if (loggedIn) {
     Promise.all([api.getProfile(), api.getInitialCards()])
       .then(([userData, cards]) => {
         setCurrentUser(userData);
         setCards(cards);
       })
       .catch(console.log);
-  }, []);
+    }
+  }, [loggedIn]);
 
   function onSignOut() {
     setLoggedIn(false);
